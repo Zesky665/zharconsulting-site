@@ -23,8 +23,20 @@ rsync -a --delete --exclude='.DS_Store' ~/Documents/obsidian-vault/Contents/ con
 
 ## Deploying
 
-Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the site to `public/` and deploys it to GitHub Pages at <https://zesky665.github.io/zharconsulting-site/>.
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the site to `public/` and deploys it to GitHub Pages.
 
-In the repo settings on GitHub: Settings -> Pages -> Source must be set to **GitHub Actions**.
+The site is served at <https://zharconsulting.com> (custom domain, CNAME emitted by the cname plugin; `baseUrl` in `quartz.config.yaml` must match).
+
+Required DNS records at the domain provider:
+
+| Record  | Name | Value                    |
+| ------- | ---- | ------------------------ |
+| A       | `@`  | `185.199.108.153`        |
+| A       | `@`  | `185.199.109.153`        |
+| A       | `@`  | `185.199.110.153`        |
+| A       | `@`  | `185.199.111.153`        |
+| CNAME   | `www` | `zesky665.github.io`    |
+
+Once DNS resolves, enable "Enforce HTTPS" under Settings -> Pages.
 
 Site configuration (title, theme, plugins, baseUrl) is in `quartz.config.yaml`. See `docs/` for the full Quartz documentation.

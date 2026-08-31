@@ -6,7 +6,7 @@ configuration:
   enablePopovers: true
   analytics: null
   locale: en-US
-  baseUrl: zesky665.github.io/zharconsulting-site
+  baseUrl: zharconsulting.com
   ignorePatterns:
     - private
     - templates
@@ -120,7 +120,7 @@ plugins:
   - source: "@quartz-community/og-image"
     enabled: true
   - source: "@quartz-community/cname"
-    enabled: false
+    enabled: true
   - source: "@quartz-community/canvas-page"
     enabled: true
   - source: "@quartz-community/content-page"
