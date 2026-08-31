@@ -2,7 +2,7 @@
 
 Digital garden for Zhar Consulting, built with [Quartz v5](https://quartz.jzhao.xyz) from an Obsidian vault.
 
-Content lives in `content/` (currently the `Contents/` folder of the vault). `content/index.md` is the landing page.
+Content lives in `content/` — mirrored from the `Contents/` and `Site/` folders of the vault. `content/index.md` is the landing page.
 
 ## Local development
 
@@ -19,7 +19,10 @@ Copy or edit Markdown under `content/` and rebuild. To sync from the Obsidian va
 
 ```bash
 rsync -a --delete --exclude='.DS_Store' ~/Documents/obsidian-vault/Contents/ content/Contents/
+rsync -a --delete --exclude='.DS_Store' ~/Documents/obsidian-vault/Site/ content/Site/
 ```
+
+Known issue: macOS ships an ancient rsync (2.6.9) whose dry-run (`-n`) can wrongly report no changes — verify syncs with `diff -rq` if unsure.
 
 ## Deploying
 
