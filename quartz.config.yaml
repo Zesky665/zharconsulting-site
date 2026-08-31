@@ -203,6 +203,7 @@ plugins:
     options:
       links:
         GitHub: https://github.com/Zesky665
+        Privacy Policy: /privacy
     layout:
       position: footer
       priority: 50
