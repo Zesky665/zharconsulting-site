@@ -85,4 +85,4 @@ Extraction results are cached, so re-running with `--update` after a writing ses
 - Run `--update` after writing sessions and keep `--mode deep` for occasional full rebuilds.
 - The graph reflects the vault: naming concepts consistently in notes produces much cleaner clusters.
 
-That is the whole pipeline: a local Obsidian vault, a Hermes agent running on the GLM coding plan, and a persistent knowledge graph over everything you have written — no data ever leaves your machine except the model calls.
+That is the whole pipeline: a local Obsidian vault, a Hermes agent running on the GLM coding plan, and a persistent knowledge graph over everything you have written — no data ever leaves your machine except the model calls. [[Knowledge Base - Part 3 - Backup|Part 3]] covers backing the whole thing up on GitHub.
