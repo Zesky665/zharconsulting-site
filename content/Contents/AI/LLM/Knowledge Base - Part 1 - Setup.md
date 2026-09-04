@@ -9,7 +9,7 @@ tags:
   - Tools
 ---
 
-This is Part 1 of building a local knowledge base on top of my Obsidian vault, using the Hermes agent to process it. This part covers the setup on macOS: installing Obsidian, installing Hermes, and wiring Hermes up to a Mistral coding plan token. [[Knowledge Base - Part 2 - Graphify|Part 2]] covers turning the vault into a knowledge graph with graphify.
+This is Part 1 of building a local knowledge base on top of my Obsidian vault, using the Hermes agent to process it. This part covers the setup on macOS: installing Obsidian, installing Hermes, and wiring Hermes up to a GLM coding plan key from Z.ai. [[Knowledge Base - Part 2 - Graphify|Part 2]] covers turning the vault into a knowledge graph with graphify.
 
 ### Why these two?
 Obsidian is where the knowledge lives, as plain Markdown files. Hermes is the [open-source, self-hosted AI agent by Nous Research](https://github.com/NousResearch/hermes-agent) that does the processing. Since everything is local files, the two compose well: the agent reads and writes the same vault I edit by hand.
@@ -46,23 +46,25 @@ hermes           # start chatting
 ```
 If you get `hermes: command not found`, reload your shell or check that `~/.local/bin` is on your `PATH`. Everything Hermes-related lives under `~/.hermes/`.
 
-### Set up Hermes with a Mistral coding plan token
-Instead of pay-as-you-go API keys, Mistral offers a [coding plan subscription](https://console.mistral.ai/) — a flat monthly token that works with any coding agent through their OpenAI-compatible endpoint. This is the cheapest way to run Hermes on a frontier model.
+### Set up Hermes with a GLM coding plan key
+Instead of pay-as-you-go API keys, [Z.ai](https://z.ai/) offers the [GLM Coding Plan](https://z.ai/subscribe) — a flat monthly subscription that works with coding agents through an OpenAI-compatible endpoint. This is the cheapest way to run Hermes on a frontier model. (I originally used a Mistral coding plan token, but Mistral's Pro plan does not work with third-party agents like Hermes, while the GLM plan does.)
 
-1. Subscribe to the plan: log in to [console.mistral.ai](https://console.mistral.ai/), go to **Billing**, and pick a coding plan that fits your usage.
-2. Copy your token from the console. Treat it like a password — it is billed per use.
-3. Point Hermes at Mistral. Hermes speaks any custom OpenAI-compatible endpoint via the model picker:
+Docs: https://docs.z.ai/devpack/overview
+
+1. Subscribe to the plan: log in at [z.ai](https://z.ai/model-api) and pick a [GLM Coding Plan](https://z.ai/subscribe) — Lite, Pro or Max, starting at $18/month.
+2. Create an API key under [Plan Overview](https://z.ai/manage-apikey/apikey-list). Treat it like a password — it is billed per use.
+3. Point Hermes at Z.ai. Hermes speaks any custom OpenAI-compatible endpoint via the model picker:
 ```bash
 hermes model
 ```
 Choose the custom OpenAI-compatible endpoint option and enter:
-- **Base URL:** `https://api.mistral.ai/v1`
-- **API key:** your coding plan token
-- **Model:** a Mistral coding model, e.g. Mistral Medium 3.5 (see the [model docs](https://docs.mistral.ai/) for the current list)
+- **Base URL:** `https://api.z.ai/api/coding/paas/v4`
+- **API key:** your GLM coding plan key
+- **Model:** `glm-5.3` (or `glm-5.3-flash` for the cheaper, faster variant — see the [model docs](https://docs.z.ai/devpack/overview))
 
 Keys are stored in `~/.hermes/.env`. You can also set them directly:
 ```bash
-hermes config set MISTRAL_API_KEY <your-token>
+hermes config set ZAI_API_KEY <your-key>
 ```
 4. Check what is active:
 ```bash
