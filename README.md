@@ -10,8 +10,10 @@ Requires **Node >= 22** (e.g. `nvm use 22`):
 
 ```bash
 npm install
-npx quartz build --serve   # serves at http://localhost:8080
+npm run quartz -- build --serve   # serves at http://localhost:8080
 ```
+
+(If `npx quartz ...` hangs on this machine, use the `npm run quartz --` form above — same thing, skips npx's registry lookup.)
 
 ## Updating content
 
